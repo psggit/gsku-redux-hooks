@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Landing } from "./Landing/index";
+import { HomeComponent } from "./Home/index";
+import { Router } from "react-router";
+import { Route } from "react-router-dom";
+import { createBrowserHistory as createHistory } from "history";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
+  const history = createHistory();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router history={history}>
+        <Provider store={store}>
+          <Route exact path="/landing" component={Landing} />
+          <Route exact path="/home" component={HomeComponent} />
+        </Provider>
+      </Router>
     </div>
   );
 }
